@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Roland Moriz <roland@moriz.de>
 
+ENV OPENRA_VERSION 20160508
+
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN \
@@ -15,12 +17,12 @@ RUN \
   rm -rf /var/lib/apt/lists/* \
   rm -rf /var/cache/apt/archives/*
 
-# http://www.openra.net/download/
+# http://www.openra.net/download
 RUN \
   cd /tmp && \
-  wget https://github.com/OpenRA/OpenRA/releases/download/release-20150614/openra_release.20150614_all.deb && \
-  dpkg -i openra_release.20150614_all.deb && \
-  rm /tmp/openra_release.20150614_all.deb
+  wget https://github.com/OpenRA/OpenRA/releases/download/release-${OPENRA_VERSION}/openra_release.${OPENRA_VERSION}_all.deb && \
+  dpkg -i openra_release.${OPENRA_VERSION}_all.deb && \
+  rm /tmp/openra_release.${OPENRA_VERSION}_all.deb
 
 RUN useradd -d /home/openra -m -s /sbin/nologin openra
 RUN chown -R openra:openra /usr/lib/openra
@@ -37,4 +39,5 @@ EXPOSE 1234
 VOLUME ["/home/openra", "/usr/lib/openra", "/home/openra/.openra/Logs", "/home/openra/.openra/maps"]
 
 USER openra
-CMD [ "/home/openra/start.sh" ]
+
+CMD ["/home/openra/start.sh"]

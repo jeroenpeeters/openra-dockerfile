@@ -2,20 +2,18 @@
 
 ## Example
 ```sh
-$ sudo docker pull rmoriz/openra
-
-$ sudo docker run -e 'NAME=Docker_Server_1' \
+docker run -e 'NAME=Docker_Server_1' \
            -e 'MOTD=Muß man wissen!' \
            -e 'ADVERTISE_ONLINE=True' \
            -p 1234:1234 \
-           -d rmoriz/openra
+           -d johannesw/openra
 
-$ sudo docker run -e 'NAME=Docker_Server_2' \
+docker run -e 'NAME=Docker_Server_2' \
            -e 'MOTD=Muß man wissen!' \
-           -e 'EXTERNAL_PORT=55555' \
+           -e 'EXTERNAL_PORT=4444' \
            -e 'ADVERTISE_ONLINE=True' \
-           -p 55555:1234 \
-           -d rmoriz/openra
+           -p 4444:1234 \
+           -d johannesw/openra
 ```
 
 ## Settings
