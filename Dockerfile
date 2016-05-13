@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Roland Moriz <roland@moriz.de>
 
-ENV OPENRA_VERSION 20151224
+ENV OPENRA_VERSION 20160508
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
